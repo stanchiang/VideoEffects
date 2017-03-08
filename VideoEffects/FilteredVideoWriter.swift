@@ -148,18 +148,24 @@ class FilteredVideoWriter: NSObject {
             let ciImage = CIImage(cvImageBuffer: pixelBuffer).applying(videoTransform)
             let positionTransform = CGAffineTransform(translationX: -ciImage.extent.origin.x, y: -ciImage.extent.origin.y)
             let transformedImage = ciImage.applying(positionTransform)
-            
-            ciFilter.setValue(transformedImage, forKey: kCIInputImageKey)
-            
+
             var newPixelBuffer: CVPixelBuffer? = nil
-            
             CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, pixelBufferPool, &newPixelBuffer)
             
-            self.ciContext.render(
-              ciFilter.outputImage!,
-              to: newPixelBuffer!,
-              bounds: ciFilter.outputImage!.extent,
-              colorSpace: nil)
+            if !(UIApplication.shared.delegate as! AppDelegate).useOpenCV {
+                ciFilter.setValue(transformedImage, forKey: kCIInputImageKey)
+                self.ciContext.render(
+                    ciFilter.outputImage!,
+                    to: newPixelBuffer!,
+                    bounds: ciFilter.outputImage!.extent,
+                    colorSpace: nil)
+            } else {
+                self.ciContext.render(
+                    OpenCVWrapper.processImage(withOpenCV: transformedImage),
+                    to: newPixelBuffer!,
+                    bounds: transformedImage.extent,
+                    colorSpace: nil)
+            }
             
             assetWriterPixelBufferInput.append(
               newPixelBuffer!,

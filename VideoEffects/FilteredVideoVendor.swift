@@ -22,7 +22,6 @@ class FilteredVideoVendor: NSObject {
   var unfilteredImage: CIImage?
   var currentURL: URL?
   var failedPixelBufferForItemTimeCount = 0
-  let useOpenCV = true
     
   weak var delegate: FilteredVideoVendorDelegate?
   
@@ -153,7 +152,7 @@ class FilteredVideoVendor: NSObject {
     
     let ciImage: CIImage
     
-    if !useOpenCV {
+    if !(UIApplication.shared.delegate as! AppDelegate).useOpenCV {
         if let ciFilter = ciFilter {
             ciFilter.setValue(unfilteredImage, forKey: kCIInputImageKey)
             
