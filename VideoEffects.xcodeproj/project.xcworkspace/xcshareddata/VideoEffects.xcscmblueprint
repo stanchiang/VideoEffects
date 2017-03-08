@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "716CC91DB946E7FB9D25C7186D7F7C824A2634A9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "716CC91DB946E7FB9D25C7186D7F7C824A2634A9" : 9223372036854775807,
+    "17BBD213016CEC677E8539D847A5186823094F35" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FA58AEB4-C771-4617-A0B0-76398D61327D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "716CC91DB946E7FB9D25C7186D7F7C824A2634A9" : "VideoEffects\/",
+    "17BBD213016CEC677E8539D847A5186823094F35" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "VideoEffects",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "VideoEffects.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stanchiang\/miniVid",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "17BBD213016CEC677E8539D847A5186823094F35"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/FlexMonkey\/VideoEffects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "716CC91DB946E7FB9D25C7186D7F7C824A2634A9"
+    }
+  ]
+}
