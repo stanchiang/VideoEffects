@@ -150,23 +150,7 @@ class FilteredVideoVendor: NSObject {
         return
     }
     
-    let ciImage: CIImage
-    
-    if !(UIApplication.shared.delegate as! AppDelegate).useOpenCV {
-        if let ciFilter = ciFilter {
-            ciFilter.setValue(unfilteredImage, forKey: kCIInputImageKey)
-            
-            ciImage = ciFilter.outputImage!.applying(videoTransform)
-        }
-        else {
-            ciImage = unfilteredImage.applying(videoTransform)
-        }
-    } else {
-        //opencv need to somehow use the image returned to imageprocessor delegate func here
-        ciImage = OpenCVWrapper.processImage(withOpenCV: unfilteredImage.applying(videoTransform))
-    }
-    
-    
+    let ciImage: CIImage = OpenCVWrapper.processImage(withOpenCV: unfilteredImage.applying(videoTransform))
     
     let cgImage = ciContext.createCGImage(
         ciImage,

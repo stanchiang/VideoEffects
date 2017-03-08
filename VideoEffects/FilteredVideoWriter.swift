@@ -116,7 +116,6 @@ class FilteredVideoWriter: NSObject {
       let pixelBufferPool = assetWriterPixelBufferInput.pixelBufferPool,
       let currentItem = player.currentItem,
       let duration = player.currentItem?.asset.duration,
-      let ciFilter = ciFilter,
       let videoWriter = videoWriter,
       let videoWriterInput = videoWriterInput,
       let videoOutputURL = videoOutputURL,
@@ -152,20 +151,11 @@ class FilteredVideoWriter: NSObject {
             var newPixelBuffer: CVPixelBuffer? = nil
             CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, pixelBufferPool, &newPixelBuffer)
             
-            if !(UIApplication.shared.delegate as! AppDelegate).useOpenCV {
-                ciFilter.setValue(transformedImage, forKey: kCIInputImageKey)
-                self.ciContext.render(
-                    ciFilter.outputImage!,
-                    to: newPixelBuffer!,
-                    bounds: ciFilter.outputImage!.extent,
-                    colorSpace: nil)
-            } else {
-                self.ciContext.render(
-                    OpenCVWrapper.processImage(withOpenCV: transformedImage),
-                    to: newPixelBuffer!,
-                    bounds: transformedImage.extent,
-                    colorSpace: nil)
-            }
+            self.ciContext.render(
+                OpenCVWrapper.processImage(withOpenCV: transformedImage),
+                to: newPixelBuffer!,
+                bounds: transformedImage.extent,
+                colorSpace: nil)
             
             assetWriterPixelBufferInput.append(
               newPixelBuffer!,
