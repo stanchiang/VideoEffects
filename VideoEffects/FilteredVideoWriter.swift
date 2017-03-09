@@ -38,7 +38,8 @@ class FilteredVideoWriter: NSObject {
   var ciFilter: CIFilter?
   var videoTransform: CGAffineTransform?
   var videoOutput: AVPlayerItemVideoOutput?
-  
+  let opencvWrapper = OpenCVWrapper()
+    
   /// Initialises the objects required to save the final video output and begins writing
   func beginSaving(player: AVPlayer, ciFilter: CIFilter, videoTransform: CGAffineTransform, videoOutput: AVPlayerItemVideoOutput) {
     
@@ -152,7 +153,7 @@ class FilteredVideoWriter: NSObject {
             CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, pixelBufferPool, &newPixelBuffer)
             
             self.ciContext.render(
-                OpenCVWrapper.processImage(withOpenCV: transformedImage),
+                self.opencvWrapper.processImage(withOpenCV: transformedImage),
                 to: newPixelBuffer!,
                 bounds: transformedImage.extent,
                 colorSpace: nil)

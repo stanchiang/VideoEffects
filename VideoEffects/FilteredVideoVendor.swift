@@ -22,6 +22,8 @@ class FilteredVideoVendor: NSObject {
   var unfilteredImage: CIImage?
   var currentURL: URL?
   var failedPixelBufferForItemTimeCount = 0
+  
+  let opencvWrapper = OpenCVWrapper()
     
   weak var delegate: FilteredVideoVendorDelegate?
   
@@ -150,7 +152,7 @@ class FilteredVideoVendor: NSObject {
         return
     }
     
-    let ciImage: CIImage = OpenCVWrapper.processImage(withOpenCV: unfilteredImage.applying(videoTransform))
+    let ciImage: CIImage = opencvWrapper.processImage(withOpenCV: unfilteredImage.applying(videoTransform))
     
     let cgImage = ciContext.createCGImage(
         ciImage,

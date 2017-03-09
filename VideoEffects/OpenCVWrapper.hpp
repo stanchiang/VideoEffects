@@ -10,6 +10,6 @@
 
 @interface OpenCVWrapper : NSObject
 
-+ (CIImage*) processImageWithOpenCV: (CIImage*) inputImage;
+- (CIImage*) processImageWithOpenCV: (CIImage*) inputImage;
 
 @end
